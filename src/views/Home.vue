@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- box是buefy里的一个类，就是会显示出一个小盒子-->
+    <div class="box">{{billboard.content}}</div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+//之前没带 中括号 报错
+import {getBillboard} from '@/api/billboard.js'
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      billboard: {
+        content: ''
+      }
+    }
+  },
+  created() {
+    this.fetchBillboard()
+  },
+  methods: {
+    async fetchBillboard() {
+      getBillboard().then((value) => {
+        const { data } = value
+        this.billboard = data
+        }
+      )
+    }
   }
 }
 </script>
