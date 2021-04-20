@@ -1,7 +1,7 @@
 //每日一句
 <template>
    <div>
-     Card
+   
    </div>
 </template>
 
